@@ -1,0 +1,1399 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Antonio — Journalist & Culture Columnist</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=Bebas+Neue&family=Inter:wght@300;400;500;600;700&family=Playfair+Display:ital,wght@0,700;1,400&display=swap" rel="stylesheet" />
+  <style>
+    /* ── PASTEL TOKENS ───────────────────────────── */
+    :root {
+      --pink:    #F2AABF;   /* rose pink */
+      --pink2:   #FAD4E0;   /* blush */
+      --pink3:   #C4607A;   /* deep rose – readable on light */
+      --sage:    #9DCFB0;   /* pastel sage green */
+      --sage2:   #5A9E78;   /* deeper sage for text/borders */
+      --yellow:  #F7E4A0;   /* butter yellow */
+      --yellow2: #D4B84A;   /* golden – readable on light */
+      --brown:   #C4956A;   /* warm caramel */
+      --brown2:  #7A4F2E;   /* deep brown for text */
+      --cream:   #FDF8F2;   /* warm white */
+      --parchment: #F5EBD8; /* warm parchment */
+      --ink:     #2C1A10;   /* near-black warm brown */
+      --muted:   #9A8678;   /* medium muted brown */
+      --font-display: 'Bebas Neue', sans-serif;
+      --font-serif:   'Playfair Display', serif;
+      --font-body:    'Inter', sans-serif;
+    }
+
+    /* ── RESET ──────────────────────────────────── */
+    *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+    html { scroll-behavior: smooth; }
+    body {
+      font-family: var(--font-body);
+      background: var(--cream);
+      color: var(--ink);
+      overflow-x: hidden;
+    }
+    a { text-decoration: none; color: inherit; }
+    img { display: block; max-width: 100%; }
+
+    /* ── NAV ────────────────────────────────────── */
+    nav {
+      position: fixed; top: 0; left: 0; right: 0; z-index: 100;
+      display: flex; align-items: center; justify-content: space-between;
+      padding: 1.2rem 5%;
+      background: transparent;
+      transition: background 0.3s, backdrop-filter 0.3s;
+    }
+    nav.scrolled {
+      background: rgba(253,248,242,0.92);
+      backdrop-filter: blur(12px);
+      box-shadow: 0 1px 0 rgba(44,26,16,0.08);
+    }
+    .nav-logo {
+      font-family: var(--font-display);
+      font-size: 1.6rem;
+      letter-spacing: 0.08em;
+      color: var(--ink);
+    }
+    .nav-logo span { color: var(--pink3); }
+    .nav-links { display: flex; gap: 2rem; list-style: none; }
+    .nav-links a {
+      font-size: 0.78rem;
+      font-weight: 600;
+      letter-spacing: 0.15em;
+      text-transform: uppercase;
+      color: var(--ink);
+      opacity: 0.6;
+      transition: opacity 0.2s, color 0.2s;
+    }
+    .nav-links a:hover { opacity: 1; color: var(--pink3); }
+
+    /* ── HERO ───────────────────────────────────── */
+    #hero {
+      min-height: 100vh;
+      background: linear-gradient(135deg, #F9C4D4 0%, #F2AAC0 45%, #FAD9E8 100%);
+      display: grid;
+      grid-template-rows: 1fr auto;
+      position: relative;
+      overflow: hidden;
+    }
+    .hero-bg-text {
+      position: absolute;
+      top: 50%; left: 50%;
+      transform: translate(-50%, -50%);
+      font-family: var(--font-display);
+      font-size: clamp(140px, 22vw, 320px);
+      color: rgba(44,26,16,0.05);
+      white-space: nowrap;
+      pointer-events: none;
+      user-select: none;
+      letter-spacing: -0.02em;
+    }
+    .hero-content {
+      display: grid;
+      grid-template-columns: 1fr auto;
+      align-items: center;
+      gap: 3rem;
+      padding: 10rem 5% 4rem;
+      position: relative;
+      z-index: 1;
+    }
+    .hero-text { display: flex; flex-direction: column; }
+    .hero-eyebrow {
+      display: inline-flex;
+      align-items: center;
+      gap: 0.6rem;
+      margin-bottom: 1.5rem;
+    }
+    .hero-eyebrow .dot {
+      width: 8px; height: 8px;
+      border-radius: 50%;
+      background: var(--sage2);
+      animation: pulse 2s infinite;
+    }
+    @keyframes pulse {
+      0%,100% { opacity: 1; transform: scale(1); }
+      50%      { opacity: 0.4; transform: scale(1.4); }
+    }
+    .hero-eyebrow span {
+      font-size: 0.75rem;
+      font-weight: 600;
+      letter-spacing: 0.2em;
+      text-transform: uppercase;
+      color: var(--sage2);
+    }
+    .hero-name {
+      font-family: var(--font-display);
+      font-size: clamp(60px, 10vw, 160px);
+      line-height: 0.9;
+      letter-spacing: -0.01em;
+      color: var(--ink);
+    }
+    .hero-name .line2 { color: var(--brown2); }
+    .hero-tagline {
+      margin-top: 1.5rem;
+      max-width: 460px;
+      font-family: var(--font-serif);
+      font-style: italic;
+      font-size: clamp(0.95rem, 1.6vw, 1.2rem);
+      color: rgba(44,26,16,0.6);
+      line-height: 1.6;
+    }
+    .hero-cta {
+      margin-top: 2rem;
+      display: flex;
+      gap: 1rem;
+      flex-wrap: wrap;
+    }
+    .btn {
+      display: inline-block;
+      padding: 0.85rem 2rem;
+      font-size: 0.78rem;
+      font-weight: 700;
+      letter-spacing: 0.15em;
+      text-transform: uppercase;
+      border-radius: 2px;
+      transition: all 0.25s;
+      cursor: pointer;
+    }
+    .btn-primary {
+      background: var(--brown2);
+      color: var(--cream);
+      border: 2px solid var(--brown2);
+    }
+    .btn-primary:hover {
+      background: transparent;
+      color: var(--brown2);
+    }
+    .btn-outline {
+      background: transparent;
+      color: var(--ink);
+      border: 2px solid rgba(44,26,16,0.3);
+    }
+    .btn-outline:hover {
+      border-color: var(--ink);
+    }
+    /* ── hero photo ── */
+    .hero-photo-wrap {
+      position: relative;
+      flex-shrink: 0;
+      width: clamp(240px, 28vw, 400px);
+      align-self: flex-end;
+    }
+    .hero-photo-wrap::before {
+      /* decorative offset block behind the photo */
+      content: '';
+      position: absolute;
+      bottom: -14px; right: -14px;
+      width: 100%; height: 100%;
+      background: var(--sage);
+      border-radius: 2px;
+      z-index: 0;
+    }
+    .hero-photo-wrap::after {
+      /* small accent square top-left */
+      content: '';
+      position: absolute;
+      top: -10px; left: -10px;
+      width: 48px; height: 48px;
+      background: var(--yellow);
+      border-radius: 2px;
+      z-index: 2;
+    }
+    .hero-photo {
+      position: relative;
+      z-index: 1;
+      width: 100%;
+      aspect-ratio: 3 / 4;
+      object-fit: cover;
+      object-position: top center;
+      display: block;
+      border-radius: 2px;
+      box-shadow: 0 20px 60px rgba(44,26,16,0.18);
+    }
+    .hero-photo-tag {
+      position: absolute;
+      bottom: 1.2rem; left: -1rem;
+      z-index: 3;
+      background: var(--pink3);
+      color: var(--cream);
+      font-size: 0.62rem;
+      font-weight: 700;
+      letter-spacing: 0.2em;
+      text-transform: uppercase;
+      padding: 0.4rem 0.9rem;
+      box-shadow: 0 4px 16px rgba(44,26,16,0.2);
+    }
+    .hero-scroll {
+      padding: 0 5% 2.5rem;
+      display: flex;
+      align-items: center;
+      gap: 1rem;
+      position: relative;
+      z-index: 1;
+    }
+    .hero-scroll-line {
+      width: 40px; height: 1px;
+      background: var(--pink3);
+    }
+    .hero-scroll span {
+      font-size: 0.7rem;
+      letter-spacing: 0.2em;
+      text-transform: uppercase;
+      color: var(--muted);
+    }
+    /* side decoration */
+    .hero-side {
+      position: absolute;
+      left: 2%;
+      top: 50%;
+      transform: translateY(-50%);
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      gap: 1.5rem;
+      z-index: 1;
+    }
+    .hero-side-label {
+      writing-mode: vertical-rl;
+      font-size: 0.65rem;
+      letter-spacing: 0.25em;
+      text-transform: uppercase;
+      color: var(--muted);
+    }
+    .hero-side-socials {
+      display: flex;
+      flex-direction: column;
+      gap: 1rem;
+    }
+    .hero-side-socials a {
+      font-size: 0.65rem;
+      letter-spacing: 0.15em;
+      text-transform: uppercase;
+      color: var(--muted);
+      transition: color 0.2s;
+      writing-mode: vertical-rl;
+    }
+    .hero-side-socials a:hover { color: var(--pink3); }
+    @media (max-width: 780px) {
+      .hero-content { grid-template-columns: 1fr; }
+      .hero-photo-wrap { width: 60vw; max-width: 280px; align-self: center; margin: 0 auto; }
+    }
+
+    /* ── TICKER ─────────────────────────────────── */
+    .ticker {
+      background: var(--sage);
+      overflow: hidden;
+      white-space: nowrap;
+      padding: 0.65rem 0;
+    }
+    .ticker-track {
+      display: inline-block;
+      animation: ticker 20s linear infinite;
+    }
+    .ticker-track span {
+      font-family: var(--font-display);
+      font-size: 1rem;
+      letter-spacing: 0.1em;
+      color: var(--ink);
+      padding: 0 2rem;
+    }
+    .ticker-track span.dot-sep { color: var(--sage2); }
+    @keyframes ticker {
+      from { transform: translateX(0); }
+      to   { transform: translateX(-50%); }
+    }
+
+    /* ── ABOUT ──────────────────────────────────── */
+    #about {
+      background: var(--parchment);
+      padding: 7rem 5%;
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 5rem;
+      align-items: center;
+    }
+    .section-label {
+      font-size: 0.72rem;
+      font-weight: 700;
+      letter-spacing: 0.22em;
+      text-transform: uppercase;
+      color: var(--pink3);
+      margin-bottom: 1.2rem;
+      display: flex;
+      align-items: center;
+      gap: 0.6rem;
+    }
+    .section-label::before {
+      content: '';
+      display: block;
+      width: 24px; height: 2px;
+      background: currentColor;
+    }
+    .about-heading {
+      font-family: var(--font-display);
+      font-size: clamp(3rem, 6vw, 5.5rem);
+      line-height: 0.95;
+      letter-spacing: 0.02em;
+      margin-bottom: 1.8rem;
+      color: var(--ink);
+    }
+    .about-heading em {
+      font-family: var(--font-serif);
+      font-style: italic;
+      color: var(--pink3);
+      font-size: 0.85em;
+    }
+    .about-body {
+      font-size: 1.05rem;
+      line-height: 1.8;
+      color: var(--brown2);
+      max-width: 480px;
+    }
+    .about-body p + p { margin-top: 1.2rem; }
+    .about-stats {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 1.5rem;
+      margin-top: 2.5rem;
+    }
+    .stat-card {
+      border-left: 3px solid var(--sage2);
+      padding-left: 1rem;
+    }
+    .stat-number {
+      font-family: var(--font-display);
+      font-size: 2.8rem;
+      color: var(--ink);
+      line-height: 1;
+    }
+    .stat-label {
+      font-size: 0.75rem;
+      font-weight: 600;
+      letter-spacing: 0.12em;
+      text-transform: uppercase;
+      color: var(--muted);
+      margin-top: 0.3rem;
+    }
+    .about-visual {
+      position: relative;
+    }
+    .about-card {
+      background: var(--yellow);
+      color: var(--ink);
+      padding: 3rem 2.5rem;
+      position: relative;
+    }
+    .about-card::before {
+      content: '"';
+      font-family: var(--font-display);
+      font-size: 12rem;
+      color: var(--brown);
+      opacity: 0.2;
+      position: absolute;
+      top: -1rem;
+      left: 1rem;
+      line-height: 1;
+      pointer-events: none;
+    }
+    .about-card-quote {
+      font-family: var(--font-serif);
+      font-style: italic;
+      font-size: 1.3rem;
+      line-height: 1.6;
+      margin-bottom: 2rem;
+      position: relative;
+      z-index: 1;
+      color: var(--brown2);
+    }
+    .about-card-tag {
+      display: inline-block;
+      background: var(--sage2);
+      color: var(--cream);
+      font-size: 0.68rem;
+      font-weight: 700;
+      letter-spacing: 0.18em;
+      text-transform: uppercase;
+      padding: 0.35rem 0.8rem;
+    }
+    .about-card-accent {
+      position: absolute;
+      bottom: -12px; right: -12px;
+      width: 80px; height: 80px;
+      background: var(--pink);
+      z-index: -1;
+    }
+
+    /* ── WORK ───────────────────────────────────── */
+    #work {
+      background: linear-gradient(160deg, #B8DECA 0%, #A8D5BA 55%, #C8EAD8 100%);
+      padding: 7rem 5%;
+    }
+    .section-header {
+      display: flex;
+      justify-content: space-between;
+      align-items: flex-end;
+      margin-bottom: 3.5rem;
+      flex-wrap: wrap;
+      gap: 1rem;
+    }
+    .section-title {
+      font-family: var(--font-display);
+      font-size: clamp(3rem, 7vw, 6rem);
+      color: var(--ink);
+      line-height: 0.9;
+      letter-spacing: 0.02em;
+    }
+    .section-title span { color: var(--sage2); }
+    .section-note {
+      font-size: 0.82rem;
+      color: var(--brown2);
+      max-width: 280px;
+      line-height: 1.6;
+      text-align: right;
+    }
+    .work-grid {
+      display: grid;
+      grid-template-columns: repeat(3, 1fr);
+      gap: 1.5px;
+      background: rgba(90,158,120,0.25);
+    }
+    .work-card {
+      background: var(--cream);
+      padding: 2.5rem;
+      position: relative;
+      overflow: hidden;
+      transition: background 0.3s;
+      cursor: default;
+    }
+    .work-card:hover { background: #fff; }
+    .work-card::after {
+      content: '';
+      position: absolute;
+      bottom: 0; left: 0;
+      width: 0; height: 3px;
+      background: var(--pink3);
+      transition: width 0.4s ease;
+    }
+    .work-card:hover::after { width: 100%; }
+    .work-card.featured {
+      grid-column: span 2;
+      background: var(--parchment);
+    }
+    .work-pub {
+      font-size: 0.68rem;
+      font-weight: 700;
+      letter-spacing: 0.2em;
+      text-transform: uppercase;
+      color: var(--sage2);
+      margin-bottom: 0.8rem;
+    }
+    .work-category {
+      display: inline-block;
+      font-size: 0.62rem;
+      font-weight: 700;
+      letter-spacing: 0.18em;
+      text-transform: uppercase;
+      color: var(--pink3);
+      border: 1px solid var(--pink3);
+      padding: 0.2rem 0.6rem;
+      margin-bottom: 1rem;
+    }
+    .work-title {
+      font-family: var(--font-serif);
+      font-size: 1.25rem;
+      font-weight: 700;
+      color: var(--ink);
+      line-height: 1.35;
+      margin-bottom: 0.8rem;
+    }
+    .work-card.featured .work-title {
+      font-size: 1.7rem;
+    }
+    .work-excerpt {
+      font-size: 0.85rem;
+      color: var(--muted);
+      line-height: 1.7;
+      margin-bottom: 1.5rem;
+    }
+    .work-link {
+      font-size: 0.7rem;
+      font-weight: 700;
+      letter-spacing: 0.18em;
+      text-transform: uppercase;
+      color: var(--brown2);
+      display: inline-flex;
+      align-items: center;
+      gap: 0.4rem;
+      transition: gap 0.2s;
+    }
+    .work-link:hover { gap: 0.8rem; color: var(--pink3); }
+    .work-link-arrow { font-size: 1rem; }
+    .work-label {
+      position: absolute;
+      top: 2.5rem; right: 2.5rem;
+      font-family: var(--font-display);
+      font-size: 3.5rem;
+      color: rgba(44,26,16,0.04);
+      pointer-events: none;
+    }
+
+    /* ── CREATIVE WRITING ───────────────────────── */
+    #creative {
+      position: relative;
+      overflow: hidden;
+    }
+    .creative-eyebrow {
+      display: flex;
+      align-items: center;
+      gap: 1.2rem;
+      justify-content: center;
+      padding: 2.8rem 5% 0;
+      background: var(--cream);
+      position: relative;
+      z-index: 2;
+    }
+    .creative-rule {
+      flex: 1;
+      height: 1px;
+      background: rgba(44,26,16,0.15);
+      max-width: 200px;
+    }
+    .creative-eyebrow-text {
+      font-size: 0.72rem;
+      font-weight: 700;
+      letter-spacing: 0.28em;
+      text-transform: uppercase;
+      color: var(--muted);
+      white-space: nowrap;
+    }
+    .creative-split {
+      display: grid;
+      grid-template-columns: 1fr 80px 1fr;
+      min-height: 92vh;
+      position: relative;
+    }
+    .creative-panel {
+      position: relative;
+      overflow: hidden;
+      display: flex;
+      align-items: flex-end;
+    }
+    .creative-panel--left {
+      background:
+        linear-gradient(
+          to right,
+          rgba(196, 96, 122, 0.82) 0%,
+          rgba(196, 96, 122, 0.55) 70%,
+          rgba(196, 96, 122, 0.0) 100%
+        ),
+        url('antonio-gaming.jpg') center center / cover no-repeat;
+    }
+    .creative-panel--right {
+      background:
+        linear-gradient(
+          to left,
+          rgba(90, 158, 120, 0.82) 0%,
+          rgba(90, 158, 120, 0.55) 70%,
+          rgba(90, 158, 120, 0.0) 100%
+        ),
+        url('antonio-lake.jpg') center top / cover no-repeat;
+    }
+    .creative-panel-inner {
+      padding: 3rem 2.8rem 3.5rem;
+      position: relative;
+      z-index: 1;
+    }
+    .creative-panel--right .creative-panel-inner {
+      text-align: right;
+    }
+    .creative-tag {
+      display: inline-block;
+      font-size: 0.62rem;
+      font-weight: 700;
+      letter-spacing: 0.22em;
+      text-transform: uppercase;
+      color: rgba(255,255,255,0.9);
+      border: 1px solid rgba(255,255,255,0.5);
+      padding: 0.22rem 0.7rem;
+      margin-bottom: 1rem;
+    }
+    .creative-title {
+      font-family: var(--font-serif);
+      font-style: italic;
+      font-size: clamp(1.15rem, 2.2vw, 1.7rem);
+      font-weight: 700;
+      color: #fff;
+      line-height: 1.3;
+      margin-bottom: 1rem;
+      max-width: 380px;
+      text-shadow: 0 2px 12px rgba(0,0,0,0.25);
+    }
+    .creative-panel--right .creative-title {
+      margin-left: auto;
+    }
+    .creative-excerpt {
+      font-size: 0.88rem;
+      color: rgba(255,255,255,0.8);
+      line-height: 1.75;
+      max-width: 340px;
+      margin-bottom: 1.5rem;
+      text-shadow: 0 1px 8px rgba(0,0,0,0.2);
+    }
+    .creative-panel--right .creative-excerpt {
+      margin-left: auto;
+    }
+    .creative-link {
+      font-size: 0.7rem;
+      font-weight: 700;
+      letter-spacing: 0.18em;
+      text-transform: uppercase;
+      color: #fff;
+      display: inline-flex;
+      align-items: center;
+      gap: 0.4rem;
+      border-bottom: 1px solid rgba(255,255,255,0.5);
+      padding-bottom: 0.15rem;
+      transition: gap 0.2s, border-color 0.2s;
+    }
+    .creative-link:hover { gap: 0.8rem; border-color: #fff; }
+    /* center label */
+    .creative-center-label {
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      background: var(--cream);
+      position: relative;
+      z-index: 3;
+    }
+    .creative-center-word {
+      writing-mode: vertical-rl;
+      font-family: var(--font-display);
+      font-size: 1.05rem;
+      letter-spacing: 0.35em;
+      color: var(--muted);
+    }
+    @media (max-width: 700px) {
+      .creative-split {
+        grid-template-columns: 1fr;
+        grid-template-rows: 60vh 48px 60vh;
+      }
+      .creative-center-label { writing-mode: horizontal-tb; flex-direction: row; }
+      .creative-center-word { writing-mode: horizontal-tb; }
+      .creative-panel--right .creative-panel-inner { text-align: left; }
+      .creative-panel--right .creative-title,
+      .creative-panel--right .creative-excerpt { margin-left: 0; }
+    }
+
+    /* ── RESUME ─────────────────────────────────── */
+    #resume {
+      background: var(--cream);
+      padding: 7rem 5%;
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 5rem;
+    }
+    .resume-left .section-label { margin-bottom: 1.5rem; }
+    .resume-heading {
+      font-family: var(--font-display);
+      font-size: clamp(3rem, 6vw, 5.5rem);
+      line-height: 0.95;
+      letter-spacing: 0.02em;
+      margin-bottom: 2rem;
+      color: var(--ink);
+    }
+    .resume-intro {
+      font-size: 0.95rem;
+      line-height: 1.8;
+      color: var(--brown2);
+      margin-bottom: 2rem;
+    }
+    .skills-grid {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 0.6rem;
+      margin-bottom: 2.5rem;
+    }
+    .skill-chip {
+      font-size: 0.72rem;
+      font-weight: 600;
+      letter-spacing: 0.1em;
+      text-transform: uppercase;
+      padding: 0.45rem 1rem;
+      border: 1.5px solid currentColor;
+      transition: all 0.2s;
+      cursor: default;
+    }
+    .skill-chip.orange { color: var(--pink3);  border-color: var(--pink3); }
+    .skill-chip.green  { color: var(--sage2);  border-color: var(--sage2); }
+    .skill-chip.dark   { color: var(--brown2); border-color: var(--brown2); }
+    .skill-chip.orange:hover { background: var(--pink3);  color: var(--cream); }
+    .skill-chip.green:hover  { background: var(--sage2);  color: var(--cream); }
+    .skill-chip.dark:hover   { background: var(--brown2); color: var(--cream); }
+    .resume-dl {
+      display: inline-flex;
+      align-items: center;
+      gap: 0.5rem;
+      padding: 0.9rem 1.8rem;
+      background: var(--ink);
+      color: var(--cream);
+      font-size: 0.75rem;
+      font-weight: 700;
+      letter-spacing: 0.15em;
+      text-transform: uppercase;
+      transition: background 0.25s;
+    }
+    .resume-dl:hover { background: var(--brown2); }
+    .timeline { display: flex; flex-direction: column; gap: 0; }
+    .timeline-item {
+      display: grid;
+      grid-template-columns: auto 1fr;
+      gap: 0 1.8rem;
+      padding-bottom: 2.5rem;
+      position: relative;
+    }
+    .timeline-item:last-child { padding-bottom: 0; }
+    .timeline-dot-col {
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+    }
+    .timeline-dot {
+      width: 12px; height: 12px;
+      border-radius: 50%;
+      background: var(--pink3);
+      border: 3px solid var(--pink3);
+      flex-shrink: 0;
+      margin-top: 0.3rem;
+    }
+    .timeline-line {
+      width: 1px;
+      flex: 1;
+      background: rgba(44,26,16,0.12);
+      margin-top: 4px;
+    }
+    .timeline-item:last-child .timeline-line { display: none; }
+    .timeline-date {
+      font-size: 0.68rem;
+      font-weight: 700;
+      letter-spacing: 0.15em;
+      text-transform: uppercase;
+      color: var(--sage2);
+      margin-bottom: 0.3rem;
+    }
+    .timeline-role {
+      font-size: 1.05rem;
+      font-weight: 700;
+      color: var(--ink);
+      margin-bottom: 0.2rem;
+    }
+    .timeline-org {
+      font-size: 0.82rem;
+      font-weight: 500;
+      color: var(--brown);
+      margin-bottom: 0.5rem;
+    }
+    .timeline-desc {
+      font-size: 0.88rem;
+      line-height: 1.7;
+      color: var(--muted);
+    }
+
+    /* ── CONTACT ────────────────────────────────── */
+    #contact {
+      background: linear-gradient(135deg, #F7E4A0 0%, #F5DCA0 50%, #EDD48E 100%);
+      padding: 7rem 5%;
+      position: relative;
+      overflow: hidden;
+    }
+    .contact-bg {
+      position: absolute;
+      inset: 0;
+      background: radial-gradient(ellipse at 70% 50%, rgba(242,170,191,0.25) 0%, transparent 60%),
+                  radial-gradient(ellipse at 20% 80%, rgba(157,207,176,0.2) 0%, transparent 50%);
+      pointer-events: none;
+    }
+    .contact-inner {
+      position: relative;
+      z-index: 1;
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 5rem;
+      align-items: start;
+    }
+    .contact-heading {
+      font-family: var(--font-display);
+      font-size: clamp(3.5rem, 8vw, 7rem);
+      color: var(--ink);
+      line-height: 0.9;
+      margin-bottom: 1.5rem;
+    }
+    .contact-heading span { color: var(--brown2); }
+    .contact-sub {
+      font-size: 1rem;
+      line-height: 1.7;
+      color: var(--brown2);
+      max-width: 400px;
+      margin-bottom: 2.5rem;
+    }
+    .contact-links { display: flex; flex-direction: column; gap: 1rem; }
+    .contact-link-item {
+      display: flex;
+      align-items: center;
+      gap: 1rem;
+      padding: 1rem 1.5rem;
+      border: 1px solid rgba(44,26,16,0.18);
+      background: rgba(253,248,242,0.6);
+      transition: border-color 0.2s, background 0.2s;
+    }
+    .contact-link-item:hover {
+      border-color: var(--brown2);
+      background: rgba(253,248,242,0.9);
+    }
+    .contact-link-icon {
+      width: 36px; height: 36px;
+      border-radius: 50%;
+      display: flex; align-items: center; justify-content: center;
+      font-size: 0.9rem;
+      flex-shrink: 0;
+    }
+    .contact-link-icon.o { background: var(--pink);  }
+    .contact-link-icon.g { background: var(--sage);  }
+    .contact-link-icon.w { background: var(--yellow2); color: var(--cream); }
+    .contact-link-text strong {
+      display: block;
+      font-size: 0.72rem;
+      font-weight: 700;
+      letter-spacing: 0.15em;
+      text-transform: uppercase;
+      color: var(--muted);
+      margin-bottom: 0.15rem;
+    }
+    .contact-link-text span {
+      font-size: 0.92rem;
+      color: var(--ink);
+    }
+    .contact-form { display: flex; flex-direction: column; gap: 1rem; }
+    .contact-form label {
+      font-size: 0.7rem;
+      font-weight: 700;
+      letter-spacing: 0.2em;
+      text-transform: uppercase;
+      color: var(--brown2);
+      margin-bottom: 0.3rem;
+      display: block;
+    }
+    .contact-form input,
+    .contact-form textarea {
+      width: 100%;
+      background: rgba(253,248,242,0.85);
+      border: 1px solid rgba(44,26,16,0.2);
+      color: var(--ink);
+      font-family: var(--font-body);
+      font-size: 0.95rem;
+      padding: 0.9rem 1.2rem;
+      outline: none;
+      transition: border-color 0.2s, background 0.2s;
+      resize: vertical;
+    }
+    .contact-form input::placeholder,
+    .contact-form textarea::placeholder { color: var(--muted); }
+    .contact-form input:focus,
+    .contact-form textarea:focus {
+      border-color: var(--brown2);
+      background: var(--cream);
+    }
+    .contact-form textarea { min-height: 130px; }
+
+    /* ── FOOTER ─────────────────────────────────── */
+    footer {
+      background: #C9A882;
+      padding: 2rem 5%;
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      flex-wrap: wrap;
+      gap: 1rem;
+      border-top: 1px solid rgba(44,26,16,0.12);
+    }
+    footer .foot-logo {
+      font-family: var(--font-display);
+      font-size: 1.3rem;
+      letter-spacing: 0.08em;
+      color: var(--ink);
+    }
+    footer .foot-logo span { color: var(--brown2); }
+    footer .foot-copy {
+      font-size: 0.72rem;
+      letter-spacing: 0.1em;
+      color: var(--brown2);
+    }
+    footer .foot-socials {
+      display: flex;
+      gap: 1.2rem;
+    }
+    footer .foot-socials a {
+      font-size: 0.7rem;
+      font-weight: 600;
+      letter-spacing: 0.15em;
+      text-transform: uppercase;
+      color: var(--brown2);
+      transition: color 0.2s;
+    }
+    footer .foot-socials a:hover { color: var(--ink); }
+
+    /* ── RESPONSIVE ─────────────────────────────── */
+    @media (max-width: 900px) {
+      #about, #resume, .contact-inner {
+        grid-template-columns: 1fr;
+        gap: 3rem;
+      }
+      .work-grid { grid-template-columns: 1fr 1fr; }
+      .work-card.featured { grid-column: span 2; }
+      .hero-side { display: none; }
+      .section-note { text-align: left; }
+    }
+    @media (max-width: 600px) {
+      .work-grid { grid-template-columns: 1fr; }
+      .work-card.featured { grid-column: span 1; }
+      .nav-links { display: none; }
+      .about-stats { grid-template-columns: 1fr 1fr; }
+    }
+  </style>
+</head>
+<body>
+
+  <!-- ── NAV ─────────────────────────────────────── -->
+  <nav id="navbar">
+    <div class="nav-logo">A<span>.</span></div>
+    <ul class="nav-links">
+      <li><a href="#about">About</a></li>
+      <li><a href="#work">Work</a></li>
+      <li><a href="#creative">Writing</a></li>
+      <li><a href="#resume">Resume</a></li>
+      <li><a href="#contact">Contact</a></li>
+    </ul>
+  </nav>
+
+  <!-- ── HERO ────────────────────────────────────── -->
+  <section id="hero">
+    <div class="hero-bg-text">ANTONIO</div>
+
+    <div class="hero-content">
+      <!-- left: text -->
+      <div class="hero-text">
+        <div class="hero-eyebrow">
+          <div class="dot"></div>
+          <span>Open to opportunities</span>
+        </div>
+        <h1 class="hero-name">
+          <div>ANTONIO CHING-DIAZ</div>
+          <div class="line2">WRITES.</div>
+        </h1>
+        <p class="hero-tagline">
+          Journalist &amp; culture columnist covering the stories that live at the intersection of community, identity, and the everyday.
+        </p>
+        <div class="hero-cta">
+          <a href="#work" class="btn btn-primary">View My Work</a>
+          <a href="#contact" class="btn btn-outline">Get in Touch</a>
+        </div>
+      </div>
+
+      <!-- right: grad photo -->
+      <div class="hero-photo-wrap">
+        <img
+          src="antonio-grad.jpg"
+          alt="Antonio at graduation"
+          class="hero-photo"
+        />
+        <div class="hero-photo-tag">Class of 2024 ✦ Journalist</div>
+      </div>
+    </div>
+
+    <div class="hero-scroll">
+      <div class="hero-scroll-line"></div>
+      <span>Scroll to explore</span>
+    </div>
+
+    <div class="hero-side">
+      <span class="hero-side-label">Journalist · Columnist · Storyteller</span>
+      <div class="hero-side-socials">
+        <a href="#contact">Twitter</a>
+        <a href="#contact">Instagram</a>
+        <a href="#contact">LinkedIn</a>
+      </div>
+    </div>
+  </section>
+
+  <!-- ── TICKER ───────────────────────────────────── -->
+  <div class="ticker" aria-hidden="true">
+    <div class="ticker-track">
+      <span>Culture</span><span class="dot-sep">✦</span>
+      <span>Journalism</span><span class="dot-sep">✦</span>
+      <span>Storytelling</span><span class="dot-sep">✦</span>
+      <span>Identity</span><span class="dot-sep">✦</span>
+      <span>Community</span><span class="dot-sep">✦</span>
+      <span>Opinion</span><span class="dot-sep">✦</span>
+      <span>Features</span><span class="dot-sep">✦</span>
+      <span>Long-form</span><span class="dot-sep">✦</span>
+      <span>Culture</span><span class="dot-sep">✦</span>
+      <span>Journalism</span><span class="dot-sep">✦</span>
+      <span>Storytelling</span><span class="dot-sep">✦</span>
+      <span>Identity</span><span class="dot-sep">✦</span>
+      <span>Community</span><span class="dot-sep">✦</span>
+      <span>Opinion</span><span class="dot-sep">✦</span>
+      <span>Features</span><span class="dot-sep">✦</span>
+      <span>Long-form</span><span class="dot-sep">✦</span>
+    </div>
+  </div>
+
+  <!-- ── ABOUT ────────────────────────────────────── -->
+  <section id="about">
+    <div class="about-text">
+      <div class="section-label">Who I Am</div>
+      <h2 class="about-heading">
+        TELLING<br><em>real</em><br>STORIES.
+      </h2>
+      <div class="about-body">
+        <p>
+          Hi, I'm Antonio — a journalist and culture columnist passionate about the stories that mainstream media overlooks. I believe every community has a story worth telling, and I'm dedicated to telling those stories with care, nuance, and honesty.
+        </p>
+        <p>
+          My writing explores culture, identity, and the social forces shaping our lives. Whether it's a neighborhood profile, a critical essay, or a reported feature, I bring curiosity and empathy to every piece.
+        </p>
+      </div>
+      <div class="about-stats">
+        <div class="stat-card">
+          <div class="stat-number">10+</div>
+          <div class="stat-label">Published pieces</div>
+        </div>
+        <div class="stat-card">
+          <div class="stat-number">3</div>
+          <div class="stat-label">Publications</div>
+        </div>
+        <div class="stat-card">
+          <div class="stat-number">2</div>
+          <div class="stat-label">Years writing</div>
+        </div>
+        <div class="stat-card">
+          <div class="stat-number">∞</div>
+          <div class="stat-label">Stories to tell</div>
+        </div>
+      </div>
+    </div>
+    <div class="about-visual">
+      <div class="about-card">
+        <p class="about-card-quote">
+          "Good journalism doesn't just report what happened — it reveals why it matters and to whom."
+        </p>
+        <span class="about-card-tag">My philosophy</span>
+        <div class="about-card-accent"></div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ── WORK ─────────────────────────────────────── -->
+  <section id="work">
+    <div class="section-header">
+      <div>
+        <div class="section-label" style="color:var(--sage2)">Selected Work</div>
+        <h2 class="section-title">MY<br><span>CLIPS.</span></h2>
+      </div>
+      <p class="section-note">A selection of published articles, columns, and reported features.</p>
+    </div>
+
+    <div class="work-grid">
+
+      <!-- Featured -->
+      <div class="work-card featured">
+        <div class="work-label">01</div>
+        <div class="work-pub">Claydough & Artist Panel Interview Series</div>
+        <div class="work-category">Culture</div>
+        <h3 class="work-title"> Getting Rizzy wth Dizzy and 'Em. Takes from the East Bay's up and coming.</h3>
+        <p class="work-excerpt"> work excerpt whatever that means haha</p>
+        <a href="#" class="work-link">Read the piece <span class="work-link-arrow">→</span></a>
+      </div>
+
+      <!-- Card 2 -->
+      <div class="work-card">
+        <div class="work-label">02</div>
+        <div class="work-pub">Substack</div>
+        <div class="work-category">Opinion</div>
+        <h3 class="work-title">Bart Getting Defuned and Why thats Wack</h3>
+        <p class="work-excerpt">A column on misallocation of our funds and misalignment on community needs.</p>
+        <a href="#" class="work-link">Read the piece <span class="work-link-arrow">→</span></a>
+      </div>
+
+      <!-- Card 3 -->
+      <div class="work-card">
+        <div class="work-label">03</div>
+        <div class="work-pub">[Student Magazine / Outlet]</div>
+        <div class="work-category">Feature</div>
+        <h3 class="work-title">The Quiet Revival: Independent Music Venues Fighting Back</h3>
+        <p class="work-excerpt">From basement shows to packed rooms — how local venues are rewriting what a music scene looks like.</p>
+        <a href="#" class="work-link">Read the piece <span class="work-link-arrow">→</span></a>
+      </div>
+
+      <!-- Card 4 -->
+      <div class="work-card">
+        <div class="work-label">04</div>
+        <div class="work-pub">[Publication Name]</div>
+        <div class="work-category">Profile</div>
+        <h3 class="work-title">Being a nepobaby to highlight community organizers or some shit</h3>
+        <p class="work-excerpt">A profile on a local father whose work turns public spaces into idk-- figure it out.</p>
+        <a href="#" class="work-link">Read the piece <span class="work-link-arrow">→</span></a>
+      </div>
+
+      <!-- Card 5 -->
+      <div class="work-card">
+        <div class="work-label">05</div>
+        <div class="work-pub">[Campus Paper / Outlet]</div>
+        <div class="work-category">Column</div>
+        <h3 class="work-title">Josh AI Nepo</h3>
+        <p class="work-excerpt">A recurring culture column interrogating who gets to tell stories, and who is left out of the frame.</p>
+        <a href="#" class="work-link">Read the piece <span class="work-link-arrow">→</span></a>
+      </div>
+
+    </div>
+  </section>
+
+  <!-- ── CREATIVE WRITING ─────────────────────────── -->
+  <section id="creative">
+    <div class="creative-eyebrow">
+      <span class="creative-rule"></span>
+      <span class="creative-eyebrow-text">Creative Writing</span>
+      <span class="creative-rule"></span>
+    </div>
+
+    <div class="creative-split">
+
+      <!-- left panel: gaming photo -->
+      <div class="creative-panel creative-panel--left">
+        <div class="creative-panel-inner">
+          <div class="creative-tag">Culture &amp; Identity</div>
+          <h3 class="creative-title">"On Being Seen: The Politics of Representation in Everyday Media"</h3>
+          <p class="creative-excerpt">
+            A recurring culture column interrogating who gets to tell stories — and who keeps getting left out of the frame. Written from the inside.
+          </p>
+          <a href="#" class="creative-link">Read the piece <span>→</span></a>
+        </div>
+      </div>
+
+      <!-- center label -->
+      <div class="creative-center-label">
+        <div class="creative-center-word">WORDS</div>
+      </div>
+
+      <!-- right panel: lake photo -->
+      <div class="creative-panel creative-panel--right">
+        <div class="creative-panel-inner">
+          <div class="creative-tag">Community &amp; Place</div>
+          <h3 class="creative-title">"Lake Merritt at Golden Hour: A Love Letter to Oakland"</h3>
+          <p class="creative-excerpt">
+            Personal essay. The lake doesn't belong to the joggers or the gentrifiers — it belongs to everyone who ever needed somewhere to think.
+          </p>
+          <a href="#" class="creative-link">Read the piece <span>→</span></a>
+        </div>
+      </div>
+
+    </div>
+  </section>
+
+  <!-- ── RESUME ────────────────────────────────────── -->
+  <section id="resume">
+    <div class="resume-left">
+      <div class="section-label">Experience &amp; Skills</div>
+      <h2 class="resume-heading">THE<br>WORK<br>BEHIND<br>THE<br>WORK.</h2>
+      <p class="resume-intro">
+        Entry-level journalist with hands-on experience in reporting, writing, and editing across print and digital formats. Comfortable with deadlines, deeply committed to accuracy.
+      </p>
+      <div class="skills-grid">
+        <span class="skill-chip orange">Reporting</span>
+        <span class="skill-chip green">Column Writing</span>
+        <span class="skill-chip dark">AP Style</span>
+        <span class="skill-chip orange">Interviewing</span>
+        <span class="skill-chip green">Content Strategy</span>
+        <span class="skill-chip dark">Copy Editing</span>
+        <span class="skill-chip orange">Social Media</span>
+        <span class="skill-chip green">Cultural Criticism</span>
+        <span class="skill-chip dark">Long-form Writing</span>
+        <span class="skill-chip orange">Fact-checking</span>
+      </div>
+      <a href="#" class="resume-dl">↓ Download Resume</a>
+    </div>
+
+    <div class="resume-right">
+      <div class="section-label" style="color:var(--sage2)">Timeline</div>
+      <div class="timeline">
+
+        <div class="timeline-item">
+          <div class="timeline-dot-col">
+            <div class="timeline-dot"></div>
+            <div class="timeline-line"></div>
+          </div>
+          <div>
+            <div class="timeline-date">2024 – Present</div>
+            <div class="timeline-role">Staff Writer / Columnist</div>
+            <div class="timeline-org">[Campus Newspaper / Student Publication]</div>
+            <div class="timeline-desc">Cover culture, campus life, and local community for weekly publication. Write a recurring culture column with a focus on identity and underrepresented voices.</div>
+          </div>
+        </div>
+
+        <div class="timeline-item">
+          <div class="timeline-dot-col">
+            <div class="timeline-dot" style="background:var(--sage2); border-color:var(--sage2)"></div>
+            <div class="timeline-line"></div>
+          </div>
+          <div>
+            <div class="timeline-date">Summer 2024</div>
+            <div class="timeline-role">Editorial Intern</div>
+            <div class="timeline-org">[Local Outlet / Magazine / Digital Publication]</div>
+            <div class="timeline-desc">Reported, wrote, and fact-checked articles for digital and print publication. Assisted senior editors with research, pitch development, and social media content.</div>
+          </div>
+        </div>
+
+        <div class="timeline-item">
+          <div class="timeline-dot-col">
+            <div class="timeline-dot" style="background:var(--brown); border-color:var(--brown)"></div>
+            <div class="timeline-line"></div>
+          </div>
+          <div>
+            <div class="timeline-date">2023</div>
+            <div class="timeline-role">Freelance Contributor</div>
+            <div class="timeline-org">[Outlet / Blog / Zine]</div>
+            <div class="timeline-desc">Contributed features, reviews, and opinion pieces. Developed pitching and story development skills working independently against tight editorial windows.</div>
+          </div>
+        </div>
+
+        <div class="timeline-item">
+          <div class="timeline-dot-col">
+            <div class="timeline-dot" style="background:var(--muted); border-color:var(--muted)"></div>
+            <div class="timeline-line"></div>
+          </div>
+          <div>
+            <div class="timeline-date">2022 – Present</div>
+            <div class="timeline-role">B.A. Journalism / Communications</div>
+            <div class="timeline-org">[University Name]</div>
+            <div class="timeline-desc">Coursework in media ethics, reporting, multimedia storytelling, and cultural studies. Dean's List.</div>
+          </div>
+        </div>
+
+      </div>
+    </div>
+  </section>
+
+  <!-- ── CONTACT ───────────────────────────────────── -->
+  <section id="contact">
+    <div class="contact-bg"></div>
+    <div class="contact-inner">
+      <div>
+        <div class="section-label" style="color:var(--brown2)">Get in Touch</div>
+        <h2 class="contact-heading">LET'S<br><span>CONNECT.</span></h2>
+        <p class="contact-sub">
+          Open to staff positions, freelance assignments, internships, and editorial collaborations. I'd love to hear about your publication or project.
+        </p>
+        <div class="contact-links">
+          <a href="mailto:antonio@email.com" class="contact-link-item">
+            <div class="contact-link-icon o">✉</div>
+            <div class="contact-link-text">
+              <strong>Email</strong>
+              <span>antonio@email.com</span>
+            </div>
+          </a>
+          <a href="#" class="contact-link-item">
+            <div class="contact-link-icon g">in</div>
+            <div class="contact-link-text">
+              <strong>LinkedIn</strong>
+              <span>linkedin.com/in/antonio</span>
+            </div>
+          </a>
+          <a href="#" class="contact-link-item">
+            <div class="contact-link-icon w">𝕏</div>
+            <div class="contact-link-text">
+              <strong>Twitter / X</strong>
+              <span>@antonio</span>
+            </div>
+          </a>
+        </div>
+      </div>
+
+      <form class="contact-form" onsubmit="handleSubmit(event)">
+        <div>
+          <label for="name">Your Name</label>
+          <input type="text" id="name" placeholder="Jane Smith" required />
+        </div>
+        <div>
+          <label for="email">Email Address</label>
+          <input type="email" id="email" placeholder="jane@publication.com" required />
+        </div>
+        <div>
+          <label for="subject">Subject</label>
+          <input type="text" id="subject" placeholder="Story pitch / Internship / Collaboration" />
+        </div>
+        <div>
+          <label for="message">Message</label>
+          <textarea id="message" placeholder="Tell me about your project or opportunity…" required></textarea>
+        </div>
+        <button type="submit" class="btn btn-primary">Send Message →</button>
+      </form>
+    </div>
+  </section>
+
+  <!-- ── FOOTER ────────────────────────────────────── -->
+  <footer>
+    <div class="foot-logo">A<span>.</span></div>
+    <div class="foot-copy">© 2025 Antonio. All rights reserved.</div>
+    <div class="foot-socials">
+      <a href="#">Twitter</a>
+      <a href="#">Instagram</a>
+      <a href="#">LinkedIn</a>
+    </div>
+  </footer>
+
+  <script>
+    // Nav scroll effect
+    const navbar = document.getElementById('navbar');
+    window.addEventListener('scroll', () => {
+      navbar.classList.toggle('scrolled', window.scrollY > 60);
+    });
+
+    // Contact form handler
+    function handleSubmit(e) {
+      e.preventDefault();
+      const btn = e.target.querySelector('button[type="submit"]');
+      btn.textContent = 'Sent! ✓';
+      btn.style.background = 'var(--green2)';
+      btn.style.borderColor = 'var(--green2)';
+      btn.disabled = true;
+      setTimeout(() => {
+        btn.textContent = 'Send Message →';
+        btn.style.background = '';
+        btn.style.borderColor = '';
+        btn.disabled = false;
+        e.target.reset();
+      }, 3000);
+    }
+
+    // Subtle scroll reveal
+    const observer = new IntersectionObserver((entries) => {
+      entries.forEach(e => {
+        if (e.isIntersecting) {
+          e.target.style.opacity = '1';
+          e.target.style.transform = 'translateY(0)';
+        }
+      });
+    }, { threshold: 0.1 });
+
+    document.querySelectorAll('.work-card, .timeline-item, .stat-card, .contact-link-item').forEach(el => {
+      el.style.opacity = '0';
+      el.style.transform = 'translateY(24px)';
+      el.style.transition = 'opacity 0.5s ease, transform 0.5s ease';
+      observer.observe(el);
+    });
+  </script>
+</body>
+</html>
